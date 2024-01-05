@@ -4,11 +4,11 @@
 class Docki < Formula
   desc ""
   homepage ""
-  url "http://gitlab.com/quirinecker/docki-cli.git"
+  url "https://gitlab.com/quirinecker/docki-cli.git", branch: "main"
   version "1.0"
   sha256 ""
   license ""
-  head "http://gitlab.com/quirinecker/docki-cli.git", ref: "main"
+  head "https://gitlab.com/quirinecker/docki-cli.git", branch: "main"
 
   depends_on "rust" => :build
 
