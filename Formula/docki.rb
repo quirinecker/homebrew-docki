@@ -22,13 +22,13 @@ class Docki < Formula
     bin.install "target/release/docki"
 
 	# Install shell completions
-    bash_output = Utils.safe_popen_read("#{bin}/docki", "completion", "bash")
+    bash_output = Utils.safe_popen_read("#{bin}/docki", "completions", "bash")
     (bash_completion/"docki").write bash_output
 
-    zsh_output = Utils.safe_popen_read("#{bin}/docki", "completion", "zsh")
+    zsh_output = Utils.safe_popen_read("#{bin}/docki", "completions", "zsh")
     (zsh_completion/"_docki").write zsh_output
 
-    fish_output = Utils.safe_popen_read("#{bin}/docki", "completion", "fish")
+    fish_output = Utils.safe_popen_read("#{bin}/docki", "completions", "fish")
     (fish_completion/"docki.fish").write fish_output
   end
 
