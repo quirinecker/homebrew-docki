@@ -20,6 +20,16 @@ class Docki < Formula
     system "cargo", "install", *std_cargo_args
     system "cargo", "build", "--release", "--bin", "docki"
     bin.install "target/release/docki"
+
+	# Install shell completions
+    bash_output = Utils.safe_popen_read("#{bin}/docki", "completion", "bash")
+    (bash_completion/"docki").write bash_output
+
+    zsh_output = Utils.safe_popen_read("#{bin}/docki", "completion", "zsh")
+    (zsh_completion/"_docki").write zsh_output
+
+    fish_output = Utils.safe_popen_read("#{bin}/docki", "completion", "fish")
+    (fish_completion/"docki.fish").write fish_output
   end
 
   test do
