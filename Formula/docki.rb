@@ -4,13 +4,16 @@
 class Docki < Formula
   desc ""
   homepage ""
-  url "https://gitlab.com/quirinecker/docki-cli.git", branch: "main"
+  url "https://github.com/quirinecker/docki.git", branch: "main"
   version "1.0"
   sha256 ""
   license ""
-  head "https://gitlab.com/quirinecker/docki-cli.git", branch: "main"
+  head "https://github.com/quirinecker/docki.git", branch: "main"
 
   depends_on "rust" => :build
+  depends_on "pkg-config" => :build
+  depends_on "openssl@3" => :build
+  depends_on "asciidoctor"
 
   def install
     # ENV.deparallelize  # if your formula fails when building in parallel
