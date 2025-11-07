@@ -1,36 +1,33 @@
 # Documentation: https://docs.brew.sh/Formula-Cookbook
 #                https://rubydoc.brew.sh/Formula
 # PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
-class Docki < Formula
+class AsciidoctorRevealjs < Formula
   desc ""
   homepage ""
-  url "https://github.com/quirinecker/docki.git", branch: "main"
-  version "1.2.1"
+  url "https://rubygems.org/downloads/asciidoctor-revealjs-5.1.0.gem", branch: "main"
+  version "5.1.0"
   sha256 ""
   license ""
-  head "https://github.com/quirinecker/docki.git", branch: "main"
 
-  depends_on "rust" => :build
-  depends_on "pkg-config" => :build
-  depends_on "openssl@3" => :build
+  depends_on "ruby"
   depends_on "asciidoctor"
-  depends_on "./asciidoctor-revealjs.rb"
 
   def install
     # ENV.deparallelize  # if your formula fails when building in parallel
-    system "cargo", "install", *std_cargo_args
-    system "cargo", "build", "--release", "--bin", "docki"
-    bin.install "target/release/docki"
 
-	# Install shell completions
-    bash_output = Utils.safe_popen_read("#{bin}/docki", "completions", "bash")
-    (bash_completion/"docki").write bash_output
+	ENV["GEM_HOME"] = libexec
+    ENV["GEM_PATH"] = libexec
+    system "gem", "install", cached_download, "--no-document", "--install-dir", libexec
 
-    zsh_output = Utils.safe_popen_read("#{bin}/docki", "completions", "zsh")
-    (zsh_completion/"_docki").write zsh_output
+    # wrapper that makes `require 'asciidoctor-revealjs'` work with brew’s asciidoctor
+    (bin/"asciidoctor-revealjs").write <<~SH
+      #!/usr/bin/env bash
+      export GEM_HOME="#{libexec}"
+      export GEM_PATH="#{libexec}:#{Formula["asciidoctor"].opt_libexec}"
+      exec "#{Formula["asciidoctor"].opt_bin}/asciidoctor" -r asciidoctor-revealjs -b revealjs "$@"
+    SH
+    chmod 0555, bin/"asciidoctor-revealjs"
 
-    fish_output = Utils.safe_popen_read("#{bin}/docki", "completions", "fish")
-    (fish_completion/"docki.fish").write fish_output
   end
 
   test do
