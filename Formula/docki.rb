@@ -14,7 +14,7 @@ class Docki < Formula
   depends_on "pkg-config" => :build
   depends_on "openssl@3" => :build
   depends_on "asciidoctor"
-  depends_on "./asciidoctor-revealjs.rb"
+  depends_on "asciidoctor-revealjs"
 
   def install
     # ENV.deparallelize  # if your formula fails when building in parallel
