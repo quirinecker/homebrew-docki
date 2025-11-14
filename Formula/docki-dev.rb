@@ -1,7 +1,7 @@
 # Documentation: https://docs.brew.sh/Formula-Cookbook
 #                https://rubydoc.brew.sh/Formula
 # PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
-class Docki < Formula
+class DockiDev < Formula
   desc ""
   homepage ""
   url "https://github.com/quirinecker/docki.git", branch: "develop"
