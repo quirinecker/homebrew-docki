@@ -5,7 +5,7 @@ class Docki < Formula
   desc ""
   homepage ""
   url "https://github.com/quirinecker/docki.git", branch: "main"
-  version "1.2.3"
+  version "1.3.0"
   sha256 ""
   license ""
   head "https://github.com/quirinecker/docki.git", branch: "main"
